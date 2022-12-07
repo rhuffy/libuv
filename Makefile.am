@@ -54,6 +54,10 @@ if SUNOS
 libuv_la_CFLAGS += -pthreads
 endif
 
+if EMSCRIPTEN
+libuv_la_CFLAGS += -pthread
+endif
+
 if WINNT
 
 uvinclude_HEADERS += include/uv/win.h include/uv/tree.h
@@ -433,6 +437,18 @@ libuv_la_SOURCES += src/unix/bsd-ifaddrs.c \
                     src/unix/kqueue.c \
                     src/unix/posix-hrtime.c
 test_run_tests_LDFLAGS += -lutil
+endif
+
+if EMSCRIPTEN
+uvinclude_HEADERS += include/uv/posix.h
+libuv_la_SOURCES += src/unix/bsd-ifaddrs.c \
+                    src/unix/emscripten.c \
+                    src/unix/no-fsevents.c \
+                    src/unix/no-proctitle.c \
+                    src/unix/posix-hrtime.c \
+                    src/unix/posix-poll.c \
+                    src/unix/sysinfo-loadavg.c \
+                    src/unix/sysinfo-memory.c
 endif
 
 if FREEBSD
