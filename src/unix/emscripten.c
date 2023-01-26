@@ -10,5 +10,18 @@ int uv_exepath(char* buffer, size_t* size) {
 }
 
 uint64_t uv_get_available_memory(void) {
-  return uv_get_free_memory();
+  return 10000000;
+}
+
+uint64_t uv_get_free_memory(void) {
+  return 10000000;
+}
+
+uint64_t uv_get_total_memory(void) {
+  return 10000000;
+}
+
+void uv_loadavg(double avg[3]) {
+  /* Can't be implemented */
+  avg[0] = avg[1] = avg[2] = 0;
 }
